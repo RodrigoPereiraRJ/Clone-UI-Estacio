@@ -1,0 +1,18 @@
+.swiper-button-prev{
+    display: none;
+  }
+
+  .swiper-button-next{
+    display: none;
+  }
+
+.swiper-pagination-bullet{
+    background-color: black;
+    height: 20px;
+    width: 20px;
+}
+
+ .swiper-slide{
+    position: relative;
+    height: 88%;
+ }
