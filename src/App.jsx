@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from 'framer-motion'
 import logoestacio from './assets/download.svg'
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -7,6 +7,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import './slideConfig.css'
+import Progress from "./progress";
 
 function App() {
 
@@ -15,6 +16,24 @@ function App() {
     visible: { x: '0' },
     exit: { x: '100%' }
   }
+
+  const [growfalse,setgrowfalse] = useState(null)
+
+  useEffect(()=>{
+
+    function teste(){
+      if(window.innerWidth > 1636){
+        setgrowfalse(true)
+      }else{
+        setgrowfalse(false)
+      }
+
+      
+    }
+   
+   window.addEventListener('resize', teste)
+   window.addEventListener('DOMContentLoaded',teste())
+  },[growfalse])
 
   const [isactive, setisactive] = useState(false)
 
@@ -225,24 +244,24 @@ function App() {
                 </div>
               </div>
               <div className="relative hidden lg:block lg:w-[20%] lg:h-[70%] lg:flex lg:items-center lg:justify-center">
-               <div className="relative w-full h-[80%] ">
+                <div className="relative w-full h-[80%] ">
                   <div className="absolute w-full h-full flex items-center">
                     <div className="absolute h-full left-[35px] top-2">
                       <p>0/10</p>
                       <p>Labolatorios e Pratica</p>
                     </div>
                     <i className="absolute w-[30px] h-[25px]">
-                     <svg style={{height: '100%'}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="flask" width="24.000em" height="24.000em" aria-hidden="true" focusable="false" role="img" alt=""><path fill-rule="evenodd" clip-rule="evenodd" d="M8.75002 8.99947V2.75H7.00002C6.5858 2.75 6.25002 2.41421 6.25002 2C6.25002 1.58579 6.5858 1.25 7.00002 1.25H17C17.4142 1.25 17.75 1.58579 17.75 2C17.75 2.41421 17.4142 2.75 17 2.75H15.25V8.99947C15.25 9.22686 15.312 9.44994 15.4294 9.6447L20.8148 18.5805C21.9195 20.4133 20.5995 22.75 18.4595 22.75H5.54052C3.40054 22.75 2.08059 20.4133 3.1852 18.5805L8.57062 9.6447C8.68799 9.44994 8.75002 9.22686 8.75002 8.99947ZM13.75 2.75H10.25V8.99947C10.25 9.49973 10.1136 9.99051 9.85534 10.419L6.94378 15.25H17.0563L14.1447 10.419C13.8865 9.99051 13.75 9.49973 13.75 8.99947V2.75ZM4.46992 19.3548L6.03976 16.75H17.9603L19.5301 19.3548C20.0322 20.1879 19.4322 21.25 18.4595 21.25H5.54052C4.5678 21.25 3.96782 20.1879 4.46992 19.3548Z" fill="currentColor"></path></svg>
+                      <svg style={{ height: '100%' }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="flask" width="24.000em" height="24.000em" aria-hidden="true" focusable="false" role="img" alt=""><path fill-rule="evenodd" clip-rule="evenodd" d="M8.75002 8.99947V2.75H7.00002C6.5858 2.75 6.25002 2.41421 6.25002 2C6.25002 1.58579 6.5858 1.25 7.00002 1.25H17C17.4142 1.25 17.75 1.58579 17.75 2C17.75 2.41421 17.4142 2.75 17 2.75H15.25V8.99947C15.25 9.22686 15.312 9.44994 15.4294 9.6447L20.8148 18.5805C21.9195 20.4133 20.5995 22.75 18.4595 22.75H5.54052C3.40054 22.75 2.08059 20.4133 3.1852 18.5805L8.57062 9.6447C8.68799 9.44994 8.75002 9.22686 8.75002 8.99947ZM13.75 2.75H10.25V8.99947C10.25 9.49973 10.1136 9.99051 9.85534 10.419L6.94378 15.25H17.0563L14.1447 10.419C13.8865 9.99051 13.75 9.49973 13.75 8.99947V2.75ZM4.46992 19.3548L6.03976 16.75H17.9603L19.5301 19.3548C20.0322 20.1879 19.4322 21.25 18.4595 21.25H5.54052C4.5678 21.25 3.96782 20.1879 4.46992 19.3548Z" fill="currentColor"></path></svg>
                     </i>
                   </div>
                 </div>
               </div>
             </div>
             <div style={{ marginTop: '30px' }} className="relative w-full flex h-auto items-center justify-center xl:justify-start flex-wrap gap-[10px] mt-[50px]">
-              <div className="relative w-full md:w-[45%] h-[250px] xl:w-[25%] xl:h-[200px] flex items-center justify-center">
+              <div className="relative w-full md:w-[45%] h-[250px] xl:w-[25%] xl:h-[200px] flex items-center justify-center flex-grow">
                 <div className="relative w-full lg:w-[100%] h-[90%] flex flex-col items-center justify-center gap-[30px] bg-[#001F66] text-[white] rounded-[10px]">
                   <div className="relative w-[90%] h-auto ">
-                    <div style={{margin: '5px'}} className="relative w-full left-[-6px]">
+                    <div style={{ margin: '5px' }} className="relative w-full left-[-6px]">
                       <i className="absolute">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="navigation" width="24.000em" height="24.000em" aria-hidden="true" focusable="false" role="img" alt=""><path fill-rule="evenodd" clip-rule="evenodd" d="M22.5303 1.46966C22.7545 1.69379 22.8135 2.03461 22.6778 2.32106L13.6778 21.3211C13.5422 21.6073 13.2414 21.7776 12.9261 21.7463C12.6109 21.7151 12.3492 21.4892 12.2724 21.1819L10.3816 13.6185L2.81812 11.7276C2.51079 11.6508 2.28488 11.3891 2.25367 11.0739C2.22245 10.7587 2.39267 10.4578 2.67895 10.3222L21.679 1.32219C21.9654 1.1865 22.3062 1.24554 22.5303 1.46966ZM5.21503 10.7807L11.1819 12.2724C11.4506 12.3396 11.6604 12.5494 11.7276 12.8181L13.2193 18.785L20.4232 3.57677L5.21503 10.7807Z" fill="currentColor"></path></svg>
                       </i>
@@ -269,16 +288,24 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className="relative w-full md:w-[45%] h-[250px] xl:w-[25%] xl:h-[200px] flex items-center justify-center">
-              <div className="relative w-full lg:w-[100%] h-[90%] flex flex-col items-center justify-center gap-[50px]">
+              <div className="relative w-full md:w-[45%] h-[250px] xl:w-[25%] xl:h-[200px] flex items-center justify-center flex-grow">
+                <div className="relative w-full lg:w-[100%] h-[90%] flex flex-col items-center justify-center gap-[50px]">
                   <div className="relative w-[90%] h-auto ">
                     <div className="relative w-full h-[60px] font-gustavin text-[20px]">
                       <p className="relative line-clamp-2 w-[72%]">Desenvolvimento Rápido de Aplicações em Python</p>
-                      <button className="absolute right-0 top-0 rounded-[50%] w-[40px] h-[40px]">
+                      <button className="absolute right-[-10px] top-0 rounded-[50%] w-[40px] h-[40px]">
                         <i>
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="info" width="24.000em" height="24.000em" aria-hidden="true" focusable="false"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 17.1086 6.89137 21.25 12 21.25C17.1086 21.25 21.25 17.1086 21.25 12C21.25 6.89137 17.1086 2.75 12 2.75ZM1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM11.25 8C11.25 7.58579 11.5858 7.25 12 7.25H12.01C12.4242 7.25 12.76 7.58579 12.76 8C12.76 8.41421 12.4242 8.75 12.01 8.75H12C11.5858 8.75 11.25 8.41421 11.25 8ZM12 11.25C12.4142 11.25 12.75 11.5858 12.75 12V16C12.75 16.4142 12.4142 16.75 12 16.75C11.5858 16.75 11.25 16.4142 11.25 16V12C11.25 11.5858 11.5858 11.25 12 11.25Z" fill="currentColor"></path></svg>
                         </i>
                       </button>
+                    </div>
+                  </div>
+                  <div className="absolute w-[90%] h-[24px] flex">
+                    <div className="relative w-[90%] h-full flex items-center">
+                      <progress className="h-[17%] w-[95%]" value='10' max='100'></progress>
+                    </div>
+                    <div className="relative w-[10%] h-full text-[13px] flex justify-end">
+                      <label htmlFor="">10%</label>
                     </div>
                   </div>
                   <div className="relative w-[90%] h-auto left-[8px]">
@@ -303,7 +330,7 @@ function App() {
                           <p className="absolute left-[25px] top-0 text-[14px]">0/2</p>
                         </div>
                         <div className="absolute right-0 top-0">
-                          <button className="absolute right-0 top-0 rounded-[50%] w-[40px] h-[40px] bg-[#144bc8]">
+                          <button className="hidden md:block absolute right-0 top-0 rounded-[50%] md:w-[40px] md:h-[40px] bg-[#144bc8]">
                             <i>
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow_right" width="24.000em" height="24.000em" aria-hidden="true" focusable="false"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.1893 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H17.1893L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="white"></path></svg>
                             </i>
@@ -314,19 +341,27 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className="relative w-full md:w-[45%] h-[250px] xl:w-[23%] xl:h-[200px] flex items-center justify-center">
+              <div className="relative w-full md:w-[45%] h-[250px] xl:w-[25%] xl:h-[200px] flex items-center justify-center flex-grow">
                 <div className="relative w-full lg:w-[100%] h-[90%] flex flex-col items-center justify-center gap-[50px]">
                   <div className="relative w-[90%] h-auto ">
                     <div className="relative w-full h-[60px] font-gustavin text-[20px]">
-                      <p className="relative line-clamp-2 w-[70%]">Matemática e Lógica</p>
-                      <button className="absolute right-0 top-0 rounded-[50%] w-[40px] h-[40px]">
+                      <p className="relative line-clamp-2 w-[72%]">Matematica e Logica</p>
+                      <button className="absolute right-[-10px] top-0 rounded-[50%] w-[40px] h-[40px]">
                         <i>
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="info" width="24.000em" height="24.000em" aria-hidden="true" focusable="false"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 17.1086 6.89137 21.25 12 21.25C17.1086 21.25 21.25 17.1086 21.25 12C21.25 6.89137 17.1086 2.75 12 2.75ZM1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM11.25 8C11.25 7.58579 11.5858 7.25 12 7.25H12.01C12.4242 7.25 12.76 7.58579 12.76 8C12.76 8.41421 12.4242 8.75 12.01 8.75H12C11.5858 8.75 11.25 8.41421 11.25 8ZM12 11.25C12.4142 11.25 12.75 11.5858 12.75 12V16C12.75 16.4142 12.4142 16.75 12 16.75C11.5858 16.75 11.25 16.4142 11.25 16V12C11.25 11.5858 11.5858 11.25 12 11.25Z" fill="currentColor"></path></svg>
                         </i>
                       </button>
                     </div>
                   </div>
-                  <div className="relative w-[90%] h-auto">
+                  <div className="absolute w-[90%] h-[24px] flex">
+                    <div className="relative w-[90%] h-full flex items-center">
+                      <progress className="h-[17%] w-[95%]" value='10' max='100'></progress>
+                    </div>
+                    <div className="relative w-[10%] h-full text-[13px] flex justify-end">
+                      <label htmlFor="">10%</label>
+                    </div>
+                  </div>
+                  <div className="relative w-[90%] h-auto left-[8px]">
                     <div className="relative w-full h-auto">
                       <div className="w-full relative h-auto flex items-center justify-start gap-[10px]">
                         <div className="relative w-[60px] h-[40px]">
@@ -348,7 +383,7 @@ function App() {
                           <p className="absolute left-[25px] top-0 text-[14px]">0/2</p>
                         </div>
                         <div className="absolute right-0 top-0">
-                          <button className="absolute right-0 top-0 rounded-[50%] w-[40px] h-[40px] bg-[#144bc8]">
+                          <button className="hidden md:block absolute right-0 top-0 rounded-[50%] md:w-[40px] md:h-[40px] bg-[#144bc8]">
                             <i>
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow_right" width="24.000em" height="24.000em" aria-hidden="true" focusable="false"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.1893 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H17.1893L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="white"></path></svg>
                             </i>
@@ -359,41 +394,49 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className="relative w-full md:w-[45%] h-[250px] xl:w-[23%] xl:h-[200px] flex items-center justify-center">
+              <div className="relative w-full md:w-[45%] h-[250px] xl:w-[23%] xl:h-[200px] flex items-center justify-center flex-grow">
                 <div className="relative w-full lg:w-[100%] h-[90%] flex flex-col items-center justify-center gap-[50px]">
-                  <div className="relative w-[90%] h-auto">
+                  <div className="relative w-[90%] h-auto ">
                     <div className="relative w-full h-[60px] font-gustavin text-[20px]">
-                      <p className="relative line-clamp-2 w-[70%]">Banco de Dados</p>
-                      <button className="absolute right-0 top-0 rounded-[50%] w-[40px] h-[40px]">
+                      <p className="relative line-clamp-2 w-[72%]">Banco de Dados</p>
+                      <button className="absolute right-[-10px] top-0 rounded-[50%] w-[40px] h-[40px]">
                         <i>
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="info" width="24.000em" height="24.000em" aria-hidden="true" focusable="false"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 17.1086 6.89137 21.25 12 21.25C17.1086 21.25 21.25 17.1086 21.25 12C21.25 6.89137 17.1086 2.75 12 2.75ZM1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM11.25 8C11.25 7.58579 11.5858 7.25 12 7.25H12.01C12.4242 7.25 12.76 7.58579 12.76 8C12.76 8.41421 12.4242 8.75 12.01 8.75H12C11.5858 8.75 11.25 8.41421 11.25 8ZM12 11.25C12.4142 11.25 12.75 11.5858 12.75 12V16C12.75 16.4142 12.4142 16.75 12 16.75C11.5858 16.75 11.25 16.4142 11.25 16V12C11.25 11.5858 11.5858 11.25 12 11.25Z" fill="currentColor"></path></svg>
                         </i>
                       </button>
                     </div>
                   </div>
-                  <div className="relative w-[90%] h-auto ">
+                  <div className="absolute w-[90%] h-[24px] flex">
+                    <div className="relative w-[90%] h-full flex items-center">
+                      <progress className="h-[17%] w-[95%]" value='10' max='100'></progress>
+                    </div>
+                    <div className="relative w-[10%] h-full text-[13px] flex justify-end">
+                      <label htmlFor="">10%</label>
+                    </div>
+                  </div>
+                  <div className="relative w-[90%] h-auto left-[8px]">
                     <div className="relative w-full h-auto">
                       <div className="w-full relative h-auto flex items-center justify-start gap-[10px]">
                         <div className="relative w-[60px] h-[40px]">
                           <i className="absolute left-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 25" class="summary" width="24.000em" height="25.000em" aria-hidden="true" focusable="false" role="img" alt=""><path fill-rule="evenodd" clip-rule="evenodd" d="M5 4.5C4.30964 4.5 3.75 5.05964 3.75 5.75V19.75C3.75 20.4404 4.30964 21 5 21H19C19.6904 21 20.25 20.4404 20.25 19.75V5.75C20.25 5.05964 19.6904 4.5 19 4.5H5ZM2.25 5.75C2.25 4.23122 3.48122 3 5 3H19C20.5188 3 21.75 4.23122 21.75 5.75V19.75C21.75 21.2688 20.5188 22.5 19 22.5H5C3.48122 22.5 2.25 21.2688 2.25 19.75V5.75ZM7 7.75L17 7.75V9.25L7 9.25V7.75ZM7 11.8437L17 11.8438V13.3438L7 13.3437V11.8437ZM12 15.9375L17 15.9375V17.4375L12 17.4375V15.9375Z" fill="currentColor"></path></svg>
                           </i>
-                          <p className="absolute left-[25px] top-0 text-[14px]">2/8</p>
+                          <p className="absolute left-[25px] top-0 text-[14px]">2/10</p>
                         </div>
                         <div className="relative w-[60px] h-[40px]">
                           <i className="absolute left-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="list-check" width="24.000em" height="24.000em" aria-hidden="true" focusable="false" role="img" alt=""><path d="M9.53033 3.53033C9.82322 3.23744 9.82322 2.76256 9.53033 2.46967C9.23744 2.17678 8.76256 2.17678 8.46967 2.46967L5 5.93934L3.53033 4.46967C3.23744 4.17678 2.76256 4.17678 2.46967 4.46967C2.17678 4.76256 2.17678 5.23744 2.46967 5.53033L4.46967 7.53033C4.76256 7.82322 5.23744 7.82322 5.53033 7.53033L9.53033 3.53033Z" fill="currentColor"></path><path d="M12 5.75001L21 5.75C21.4142 5.75 21.75 5.41421 21.75 5C21.75 4.58579 21.4142 4.25 21 4.25L12 4.25001C11.5858 4.25001 11.25 4.58579 11.25 5.00001C11.25 5.41422 11.5858 5.75001 12 5.75001Z" fill="currentColor"></path><path d="M9.53033 10.4697C9.82322 10.7626 9.82322 11.2374 9.53033 11.5303L5.53033 15.5303C5.23744 15.8232 4.76256 15.8232 4.46967 15.5303L2.46967 13.5303C2.17678 13.2374 2.17678 12.7626 2.46967 12.4697C2.76256 12.1768 3.23744 12.1768 3.53033 12.4697L5 13.9393L8.46967 10.4697C8.76256 10.1768 9.23744 10.1768 9.53033 10.4697Z" fill="currentColor"></path><path d="M12 13.75L21 13.75C21.4142 13.75 21.75 13.4142 21.75 13C21.75 12.5858 21.4142 12.25 21 12.25L12 12.25C11.5858 12.25 11.25 12.5858 11.25 13C11.25 13.4142 11.5858 13.75 12 13.75Z" fill="currentColor"></path><path d="M21 21.25L12 21.25C11.5858 21.25 11.25 20.9142 11.25 20.5C11.25 20.0858 11.5858 19.75 12 19.75L21 19.75C21.4142 19.75 21.75 20.0858 21.75 20.5C21.75 20.9142 21.4142 21.25 21 21.25Z" fill="currentColor"></path><path d="M5.5 22C6.32843 22 7 21.3284 7 20.5C7 19.6716 6.32843 19 5.5 19C4.67157 19 4 19.6716 4 20.5C4 21.3284 4.67157 22 5.5 22Z" fill="currentColor"></path></svg>
                           </i>
-                          <p className="absolute left-[25px] top-0 text-[14px]">3/6</p>
+                          <p className="absolute left-[25px] top-0 text-[14px]">0/6</p>
                         </div>
                         <div className="relative w-[60px] h-[40px]">
                           <i className="absolute left-0">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="rule" width="24.000em" height="24.000em" aria-hidden="true" focusable="false" role="img" alt=""><g clip-path="url(#clip0_4814_170)"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.44444 0.25C2.59723 0.25 1.78471 0.586556 1.18563 1.18563C0.586556 1.78471 0.25 2.59723 0.25 3.44444V20.5556C0.25 21.4028 0.586557 22.2153 1.18563 22.8144C1.78471 23.4134 2.59722 23.75 3.44444 23.75H20.5556C21.4028 23.75 22.2153 23.4134 22.8144 22.8144C23.4134 22.2153 23.75 21.4028 23.75 20.5556V3.44444C23.75 2.59722 23.4134 1.78471 22.8144 1.18563C22.2153 0.586557 21.4028 0.25 20.5556 0.25H3.44444ZM2.24629 2.24629C2.56406 1.92852 2.99505 1.75 3.44444 1.75H20.5556C21.0049 1.75 21.4359 1.92852 21.7537 2.24629C22.0715 2.56406 22.25 2.99505 22.25 3.44444V20.5556C22.25 21.0049 22.0715 21.4359 21.7537 21.7537C21.4359 22.0715 21.0049 22.25 20.5556 22.25H3.44444C2.99505 22.25 2.56406 22.0715 2.24629 21.7537C1.92852 21.4359 1.75 21.0049 1.75 20.5556V3.44444C1.75 2.99505 1.92852 2.56406 2.24629 2.24629ZM14 6.75C13.5858 6.75 13.25 7.08579 13.25 7.5C13.25 7.91421 13.5858 8.25 14 8.25L19 8.25C19.4142 8.25 19.75 7.91421 19.75 7.5C19.75 7.08579 19.4142 6.75 19 6.75L14 6.75ZM11.5303 4.96967C11.8232 5.26256 11.8232 5.73744 11.5303 6.03033L7.53033 10.0303C7.23744 10.3232 6.76256 10.3232 6.46967 10.0303L4.46967 8.03033C4.17678 7.73744 4.17678 7.26256 4.46967 6.96967C4.76256 6.67678 5.23744 6.67678 5.53033 6.96967L7 8.43934L10.4697 4.96967C10.7626 4.67678 11.2374 4.67678 11.5303 4.96967ZM14 15.75C13.5858 15.75 13.25 16.0858 13.25 16.5C13.25 16.9142 13.5858 17.25 14 17.25H19C19.4142 17.25 19.75 16.9142 19.75 16.5C19.75 16.0858 19.4142 15.75 19 15.75L14 15.75ZM10.5303 13.9697C10.8232 14.2626 10.8232 14.7374 10.5303 15.0303L9.06066 16.5L10.5303 17.9697C10.8232 18.2626 10.8232 18.7374 10.5303 19.0303C10.2374 19.3232 9.76256 19.3232 9.46967 19.0303L8 17.5607L6.53033 19.0303C6.23744 19.3232 5.76256 19.3232 5.46967 19.0303C5.17678 18.7374 5.17678 18.2626 5.46967 17.9697L6.93934 16.5L5.46967 15.0303C5.17678 14.7374 5.17678 14.2626 5.46967 13.9697C5.76256 13.6768 6.23744 13.6768 6.53033 13.9697L8 15.4393L9.46967 13.9697C9.76256 13.6768 10.2374 13.6768 10.5303 13.9697Z" fill="currentColor"></path></g><defs><clipPath id="clip0_4814_170"><rect width="24" height="24" fill="currentColor"></rect></clipPath></defs></svg>
                           </i>
-                          <p className="absolute left-[25px] top-0 text-[14px]">5/2</p>
+                          <p className="absolute left-[25px] top-0 text-[14px]">0/2</p>
                         </div>
                         <div className="absolute right-0 top-0">
-                          <button className="absolute right-0 top-0 rounded-[50%] w-[40px] h-[40px] bg-[#144bc8]">
+                          <button className="hidden md:block absolute right-0 top-0 rounded-[50%] md:w-[40px] md:h-[40px] bg-[#144bc8]">
                             <i>
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow_right" width="24.000em" height="24.000em" aria-hidden="true" focusable="false"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.1893 12.75H5C4.58579 12.75 4.25 12.4142 4.25 12C4.25 11.5858 4.58579 11.25 5 11.25H17.1893L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967Z" fill="white"></path></svg>
                             </i>
@@ -404,7 +447,7 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className="relative w-full md:w-[45%] h-[250px] xl:w-[25%] xl:h-[200px] flex items-center justify-center">
+              <div className={`${growfalse ? 'relative w-full md:w-[45%] h-[250px] xl:w-[25%] xl:h-[200px] flex items-center justify-center' : 'relative w-full md:w-[45%] h-[250px] xl:w-[25%] xl:h-[200px] flex items-center justify-center flex-grow'}`}>
                 <div className="relative w-full lg:w-[100%] h-[90%] flex flex-col items-center justify-center gap-[50px]">
                   <div className="relative w-[90%] h-auto">
                     <div className="relative w-full h-[60px] font-gustavin text-[20px]">
@@ -449,7 +492,7 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className="relative w-full md:w-[45%] h-[250px] xl:w-[23%] xl:h-[200px] flex items-center justify-center">
+              <div className={`${growfalse ? 'relative w-full md:w-[45%] h-[250px] xl:w-[25%] xl:h-[200px] flex items-center justify-center' : 'relative w-full md:w-[45%] h-[250px] xl:w-[25%] xl:h-[200px] flex items-center justify-center flex-grow'}`}>
                 <div className="relative w-full lg:w-[100%] h-[90%] flex flex-col items-center justify-center gap-[50px]">
                   <div className="relative w-[90%] h-auto">
                     <div className="relative w-full h-[60px] font-gustavin text-[20px]">
